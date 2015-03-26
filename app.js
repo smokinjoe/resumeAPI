@@ -9,8 +9,8 @@ var app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use('/', routes);
-app.use('/api/resume', resume);
+app.use('/api/v1', routes);
+app.use('/api/v1/resume', resume);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
