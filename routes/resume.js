@@ -246,13 +246,17 @@ var resumeJSON = {
   "references" : "References available upon request"
 };
 
-app.use(function (req, res, next) {
+router.use(function (req, res, next) {
   console.log('Accessing resume API');
   next(); // go to the next routes and don't stop here
 });
 
 /* GET resumes data */
-router.get('/tmp', function(req, res, next) {
+router.get('/', function (req, res, next) {
+  res.json({ message: 'Returning Resume JSON' });
+});
+
+router.get('/magicRoute', function (req, res, next) {
   res.json(resumeJSON);
 });
 
