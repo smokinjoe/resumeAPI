@@ -1,14 +1,23 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 
-var routes = require('./routes/index');
-var resume = require('./routes/resume');
+// configuring Mongoose
+var dbConfig = require('./config/db');
+var mongoose = require('mongoose');
+mongoose.connect(dbConfig.url);
 
 var app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+// define models
+// JOE: this is probably going into the resume route?
+var Resume = require('./models/resume');
+
+// define routes
+var routes = require('./routes/index');
+var resume = require('./routes/resume');
 app.use('/api/v1', routes);
 app.use('/api/v1/resume', resume);
 
