@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var Resume = require('../models/resume');
 
 var resumeJSON = {
   "title" : "Joe's Resume",
@@ -256,6 +257,21 @@ router.get('/', function (req, res, next) {
   res.json({ message: 'Returning Resume JSON' });
 });
 
+// POST to create new Resume
+router.post('/', function (req, res, next) {
+  var resume = new Resume();
+  resume.name = req.body.name;
+  resume.save(function (err) {
+    if (err) {
+      res.send(err);
+    }
+    res.json({ message: 'Resume created!' });
+  })
+});
+
+
+
+// Magic route for resume JSON - eventually going to store this in the DB
 router.get('/magicRoute', function (req, res, next) {
   res.json(resumeJSON);
 });
