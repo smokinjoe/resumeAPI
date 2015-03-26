@@ -248,7 +248,7 @@ var resumeJSON = {
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.json({ json: resumeJSON });
+  res.json(resumeJSON);
 });
 
 module.exports = router;
